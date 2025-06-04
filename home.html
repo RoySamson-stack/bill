@@ -707,6 +707,9 @@
         .benefit-card:nth-child(11) { animation-delay: 1.1s; }
         .benefit-card:nth-child(12) { animation-delay: 1.2s; }
     </style>
+    <!-- Add these scripts before your closing </head> tag -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <div class="flag-stripe"></div>
@@ -964,7 +967,7 @@
             </div>
         </div>
 
-        <!-- Feedback Form
+        <!-- Feedback Form -->
         <h2 class="section-title">Share Your Thoughts</h2>
         <div class="feedback-form">
             <form id="financeBillFeedback">
@@ -994,12 +997,14 @@
                 </div>
                 
                 <button type="submit" class="submit-btn">Submit Feedback</button>
+                <div id="formStatus" style="margin-top: 15px; color: #4CAF50; display: none;"></div>
             </form>
-        </div> -->
+        </div>
+
 
         <!-- Resources Section -->
-        <!-- <h2 class="section-title" id="resources">Official Resources</h2>
         <div class="resources-section">
+            <h2 class="section-title" id="resources">Official Resources</h2>
             <ul class="resource-list">
                 <li>
                     <a href="https://www.parliament.go.ke/the-finance-bill-2025" target="_blank">
@@ -1022,7 +1027,7 @@
                     </a>
                 </li>
             </ul>
-        </div> -->
+        </div>
 
         <div class="summary-banner" style="margin-top: 60px;">
             <div class="summary-text">
@@ -1030,6 +1035,8 @@
             </div>
         </div>
     </div>
+
+       
 
     <!-- Footer -->
     <footer>
@@ -1177,6 +1184,81 @@
                 }
             });
         });
+
+    // Firebase configuration (replace with your actual config)
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Feedback form submission
+        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formStatus = document.getElementById('formStatus');
+            const submitBtn = this.querySelector('.submit-btn');
+            
+            // Get form values
+            const name = document.getElementById('name').value || 'Anonymous';
+            const email = document.getElementById('email').value || 'Not provided';
+            const feedbackType = document.getElementById('feedbackType').value;
+            const message = document.getElementById('message').value;
+            const timestamp = new Date();
+            
+            // Disable submit button during processing
+            submitBtn.disabled = true;
+            formStatus.style.display = 'block';
+            formStatus.textContent = 'Submitting your feedback...';
+            formStatus.style.color = '#4CAF50';
+            
+            // Add to Firestore
+            db.collection("feedback").add({
+                name: name,
+                email: email,
+                type: feedbackType,
+                message: message,
+                timestamp: timestamp
+            })
+            .then(() => {
+                formStatus.textContent = 'Thank you for your feedback!';
+                formStatus.style.color = '#4CAF50';
+                this.reset();
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                formStatus.textContent = 'Error submitting feedback. Please try again.';
+                formStatus.style.color = '#cc0000';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 5000);
+            });
+        });
+    } else {
+        console.warn("Firebase not initialized - using mock submission");
+        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formStatus = document.getElementById('formStatus');
+            formStatus.style.display = 'block';
+            formStatus.textContent = 'Thank you for your feedback! (Firebase not configured)';
+            formStatus.style.color = '#4CAF50';
+            this.reset();
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        });
+    }
     </script>
 </body>
 </html>
