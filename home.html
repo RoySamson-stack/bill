@@ -624,6 +624,9 @@
             min-height: 120px;
             resize: vertical;
         }
+        .form-group option{
+            color: black;
+        }
 
         .submit-btn {
             background: linear-gradient(45deg, #cc0000, #006600);
@@ -755,7 +758,6 @@
         .benefit-card:nth-child(11) { animation-delay: 1.1s; }
         .benefit-card:nth-child(12) { animation-delay: 1.2s; }
     </style>
-    <!-- Add these scripts before your closing </head> tag -->
 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 </head>
@@ -772,7 +774,7 @@
             <div class="nav-links" id="navLinks">
                 <a href="#overview">Overview</a>
                 <a href="#benefits">Mwanachi</a>
-                <a href="#features">Key Features</a>
+                <!-- <a href="#features">Key Features</a> -->
                 <a href="#myths">Debunking Myths</a>
                 <a href="#qa">Q&A</a>
                 <a href="#resources">Resources</a>
@@ -917,7 +919,7 @@
             </div>
         </div>
 
-        <!-- Key Features Section -->
+        <!-- Key Features Section
         <h2 class="section-title" id="features">Key Features Explained</h2>
         <div class="key-features">
             <div class="feature-item">
@@ -968,7 +970,7 @@
                 <div class="key-message">Protects local businesses from unfair competition</div>
                 <div class="key-message">Everyone earning from Kenya contributes fairly</div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Debunking Myths Section -->
         <h2 class="section-title" id="myths">Debunking Myths & Misconceptions</h2>
@@ -1164,12 +1166,12 @@
             <form id="financeBillFeedback">
                 <input type="hidden" id="site2" name="site2" value="finance-Bill-2025">
                 <div class="form-group">
-                    <label for="name">Your Name (Optional)</label>
+                    <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email (Optional)</label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email">
                 </div>
                 
@@ -1279,13 +1281,13 @@
 
         // Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDIzHDaWpDqL_X3NFDSrkN3wejV_qiagfM",
-            authDomain: "srf-Bill.firebaseapp.com",
-            databaseURL: "https://srf-Bill-default-rtdb.firebaseio.com",
-            projectId: "srf-Bill",
-            storageBucket: "srf-Bill.firebasestorage.app",
-            messagingSenderId: "102406855964",
-            appId: "1:102406855964:web:8703311a12056416a52ed9"
+            apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+            authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+            databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+            projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+            storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+            messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+            appId: process.env.REACT_APP_FIREBASE_APP_ID
         };
 
         // Initialize Firebase
