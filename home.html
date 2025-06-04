@@ -641,6 +641,54 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
+        /* Myths section */
+        .myths-section {
+            background: rgba(102, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid rgba(182, 0, 0, 0.5);
+        }
+
+        .myth-item {
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #cc0000;
+        }
+
+        .myth-title {
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .myth-content {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .truth-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .false-status {
+            background-color: #cc0000;
+            color: white;
+        }
+
+        .partly-true-status {
+            background-color: #cc6600;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .benefits-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -680,7 +728,7 @@
         }
 
         /* Scroll animation */
-        .benefit-card, .feature-item, .qa-item, .resource-list li {
+        .benefit-card, .feature-item, .qa-item, .resource-list li, .myth-item {
             opacity: 0;
             transform: translateY(30px);
             animation: slideInUp 0.6s ease forwards;
@@ -723,8 +771,9 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="#overview">Overview</a>
-                <a href="#benefits">Mwanachi </a>
+                <a href="#benefits">Mwanachi</a>
                 <a href="#features">Key Features</a>
+                <a href="#myths">Debunking Myths</a>
                 <a href="#qa">Q&A</a>
                 <a href="#resources">Resources</a>
             </div>
@@ -743,9 +792,7 @@
     <div class="container">
         <div class="header" id="overview">
             <h1>Untold Truth on the Finance Bill 2025</h1>
-            <!-- <h1>Finance Bill 2025: Key Reforms</h1>  -->
             <div class="year-badge">2025 Analysis</div>
-            <!-- <p class="subtitle">Modernizing Kenya's tax system for growth and fairness</p> -->
         </div>
         
         <div class="summary-banner">
@@ -923,6 +970,150 @@
             </div>
         </div>
 
+        <!-- Debunking Myths Section -->
+        <h2 class="section-title" id="myths">Debunking Myths & Misconceptions</h2>
+        <div class="myths-section">
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Increase of VAT from 16% to 18%
+                </div>
+                <div class="myth-content">
+                    This is false as the Finance Bill 2025 does not propose any change to the VAT rate. It remains at 16%. This confusion likely comes from earlier regional tax harmonization talks under the Medium-Term Revenue Strategy (MTRS). Advisory firms like PwC and KPMG have confirmed that the current Bill does not suggest raising the VAT rate.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status partly-true-status">Partly True</span>
+                    All zero-rated goods will become tax-exempt
+                </div>
+                <div class="myth-content">
+                    Partly true — Some items like animal feeds, locally assembled phones, and pharmaceuticals will shift from zero-rated to exempt, which could raise their costs. However, essentials such as bread, milk, and flour will remain zero-rated.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status partly-true-status">Partly True</span>
+                    Excise Duty will apply to all digital and imported services
+                </div>
+                <div class="myth-content">
+                    Partly true — The Bill targets specific imports like printed paper and polymer packaging, and imposes excise duty on digital services offered by non-residents through online platforms, as outlined in Sections 2 and 5.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Landowners will be taxed 10% on idle land
+                </div>
+                <div class="myth-content">
+                    This is false as the Bill does not propose a 10% tax on idle land. This claim has been widely circulated online but is not in the Bill. Always check official documents to avoid misinformation.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    5% Agriculture tax on tea, coffee and avocado sales
+                </div>
+                <div class="myth-content">
+                    This is false, as the Bill does not propose a 5% tax on the sale of tea, coffee, or avocados. The confusion likely arises from the Medium-Term Revenue Strategy (MTRS) 2023–2027, which had suggested a 5% withholding tax on agricultural produce sold through cooperatives and organized groups. However, this proposal was not adopted in the Finance Bill. While the Bill introduces changes affecting farmers, such as removing VAT exemptions on farm inputs, it does not include a direct 5% sales tax on these crops.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    PAYE will rise from 35% to 37.7%, and low earners taxed from 10% to 25%
+                </div>
+                <div class="myth-content">
+                    False as the Bill does not propose these changes. The current PAYE tax rates remain the same, with 10% for low-income earners and 35% for the highest band. The misinformation likely comes from a proposal made by the World Bank in its advisory reports suggesting higher tax rates, but this recommendation was not included in the Finance Bill 2025. The current update on PAYE in the Bill is that from 1 July 2025, employers must automatically apply tax reliefs for employees.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Mandatory KES 1,000 health insurance fee under SHIF
+                </div>
+                <div class="myth-content">
+                    The bill does not introduce a mandatory KES 1,000 fee under SHIF. The KES 1,000 figure likely arises from a misinterpretation of reimbursement provisions in the Ministry of Health's tariff guidelines, which allow a KES 1,000 daily reimbursement for beneficiaries who do not complete the three-stage program or meet the 45-day minimum stay.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    New 15% tax on internet access
+                </div>
+                <div class="myth-content">
+                    There is no new 15% levy on internet access services. Existing digital taxes remain at 1.5% for digital assets, and the excise duty on digital services still applies mainly to online content, gaming, and advertising. However, the Tax Laws (Amendment) Act, 2024 replaced the 1.5% Digital Service Tax with a 6% Significant Economic Presence Tax for non-residents offering services through digital marketplaces.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Mazingira Tax will be applied broadly
+                </div>
+                <div class="myth-content">
+                    This is not in the Finance Bill 2025. The KES 150 levy on packaging materials like plastics and glass comes from the Sustainable Waste Management (Extended Producer Responsibility) Regulations, 2024, enforced by NEMA under the Sustainable Waste Management Act. However, the High Court temporarily suspended these regulations on May 7, 2025, following a case filed by the Law Society of Kenya.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Finance Bill threatens jobs and MSMEs
+                </div>
+                <div class="myth-content">
+                    This is false as the Bill offers tax incentives for start-ups and investors through NIFCA — 15% for 3 years, 20% for 4 years. It also supports MSMEs by streamlining taxes, boosting digital growth, and encouraging formalization. Paired with the MSME Policy 2025, it aims to expand funding, grow markets, and create more jobs.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Wifi Monitoring
+                </div>
+                <div class="myth-content">
+                    This is derived from the Kenya Information and Communications (Amendment) Bill 2025 which aims to shift from the current flat-rate or bundled data plans to a pay-per-use model. The Bill also proposes ISP Reporting including detailed usage data linked to meter numbers.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Extension of the presidential limit from 5 to 7 years
+                </div>
+                <div class="myth-content">
+                    The proposal is in the Constitution of Kenya (Amendment) (No. 2) Bill No. 46 of 2024, introduced in the Senate. It has faced strong public and political opposition and is in the second reading stage. For now, the presidential limit remains at two five-year terms.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Exchange of indigenous seeds and a fine of a million shillings
+                </div>
+                <div class="myth-content">
+                    This comes from the Seeds and Plant Varieties Act, which bans sharing uncertified seeds. However, the law is currently being challenged by Farmers in court, arguing it violates their rights.
+                </div>
+            </div>
+            
+            <div class="myth-item">
+                <div class="myth-title">
+                    <span class="truth-status false-status">False</span>
+                    Neonatal Tax, Diaspora Remittance Tax, or 1% levy on pay bill transactions
+                </div>
+                <div class="myth-content">
+                    There is no basis for claims about a Neonatal Tax, Diaspora Remittance Tax, or a 1% levy on all pay bill and till number transactions. These assertions are false and not grounded in any official policy or legislation.
+                </div>
+            </div>
+        </div>
+
         <!-- Q&A Section -->
         <h2 class="section-title" id="qa">Questions & Answers</h2>
         <div class="qa-section">
@@ -971,6 +1162,7 @@
         <h2 class="section-title">Share Your Thoughts</h2>
         <div class="feedback-form">
             <form id="financeBillFeedback">
+                <input type="hidden" id="site2" name="site2" value="finance-Bill-2025">
                 <div class="form-group">
                     <label for="name">Your Name (Optional)</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name">
@@ -982,8 +1174,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="feedbackType">Type of Feedback</label>
-                    <select id="feedbackType" name="feedbackType">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
                         <option value="general">General Comment</option>
                         <option value="question">Question</option>
                         <option value="suggestion">Suggestion</option>
@@ -1001,29 +1193,38 @@
             </form>
         </div>
 
-
         <!-- Resources Section -->
         <div class="resources-section">
             <h2 class="section-title" id="resources">Official Resources</h2>
             <ul class="resource-list">
                 <li>
-                    <a href="https://www.parliament.go.ke/the-finance-bill-2025" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Official Finance Bill 2025 PDF (Parliament of Kenya)
+                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/09/Draft-MTRS-Final.pdf" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Medium-Term Revenue Strategy (MTRS) Document
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.kra.go.ke/finance-bill-2025" target="_blank">
-                        <i class="fas fa-landmark"></i> KRA Finance Bill 2025 Analysis
+                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/12/Medium-Term-Revenue-Strategy-2023.pdf" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Medium-Term Revenue Strategy 2023-2027
                     </a>
                 </li>
                 <li>
-                    <a href="https://home.kpmg/ke/en/home/insights/2025/05/finance-bill-2025-analysis.html" target="_blank">
-                        <i class="fas fa-chart-line"></i> KPMG Professional Analysis
+                    <a href="https://documents1.worldbank.org/curated/en/099052625064075957/pdf/P508617-0037cc2b-2412-4d93-af21-b1a559f4c775.pdf" target="_blank">
+                        <i class="fas fa-file-pdf"></i> World Bank Advisory Report on Taxation
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.treasury.go.ke/finance-bill-2025" target="_blank">
-                        <i class="fas fa-coins"></i> National Treasury Explanatory Memorandum
+                    <a href="https://msme.go.ke/sites/default/files/2025-03/Draft%20MSME%20Policy%202025.pdf" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Draft MSME Policy 2025
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.parliament.go.ke/sites/default/files/2025-05/The%20Kenya%20Information%20and%20Communications%20%28amendment%29%20Bill%2C" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Kenya Information and Communications (Amendment) Bill 2025
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.greenpeace.org/africa/en/press/57608/kenyan-farmers-civil-society-and-advocates-take-seed-fight-to-court-in-landmark-case-for-food-sovereignty/" target="_blank">
+                        <i class="fas fa-file-alt"></i> Greenpeace Article on Seeds and Plant Varieties Act
                     </a>
                 </li>
             </ul>
@@ -1036,44 +1237,18 @@
         </div>
     </div>
 
-       
-
     <!-- Footer -->
     <footer>
         <div class="container">
             <p>Finance Bill 2025 Impact Analysis - Providing factual information for Kenyan citizens</p>
             <div class="footer-logo">
                 <a href="#" target="_blank">
-                    <!-- <img src="https://wp-content/uploads/2023/05/amkeni-logo-white.png" alt="Amkeni Logo"> -->
                     Tujengenchi
                 </a>
             </div>
             <p style="margin-top: 20px;">© 2025 All Rights Reserved</p>
         </div>
     </footer>
-
-    <!-- Chatbot -->
-    <!-- <div class="chatbot-container">
-        <div class="chatbot-button" id="chatbotButton">
-            <i class="fas fa-comment-dots"></i>
-        </div>
-        
-        <div class="chatbot-box" id="chatbotBox">
-            <div class="chatbot-header">
-                <span>Finance Bill Assistant</span>
-                <i class="fas fa-times" id="closeChatbot"></i>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    Hello! I can help answer your questions about the Finance Bill 2025. What would you like to know?
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="userMessage" placeholder="Ask about the Finance Bill...">
-                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div> -->
 
     <script>
         // Mobile menu toggle
@@ -1102,101 +1277,18 @@
             });
         });
 
-        // Chatbot functionality
-        const chatbotButton = document.getElementById('chatbotButton');
-        const chatbotBox = document.getElementById('chatbotBox');
-        const closeChatbot = document.getElementById('closeChatbot');
-        const sendMessage = document.getElementById('sendMessage');
-        const userMessage = document.getElementById('userMessage');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-        
-        chatbotButton.addEventListener('click', () => {
-            chatbotBox.style.display = chatbotBox.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        closeChatbot.addEventListener('click', () => {
-            chatbotBox.style.display = 'none';
-        });
-        
-        function addBotMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            messageDiv.textContent = text;
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-        
-        sendMessage.addEventListener('click', () => {
-            const message = userMessage.value.trim();
-            if (message) {
-                // Add user message
-                const userDiv = document.createElement('div');
-                userDiv.className = 'message user-message';
-                userDiv.textContent = message;
-                chatbotMessages.appendChild(userDiv);
-                
-                // Clear input
-                userMessage.value = '';
-                
-                // Simulate bot response (in a real app, this would call an API)
-                setTimeout(() => {
-                    let response = "I'm a simulated response. In a real implementation, this would connect to a backend service with Finance Bill information.";
-                    
-                    if (message.toLowerCase().includes('tax')) {
-                        response = "The Finance Bill 2025 reduces several tax rates, including digital assets tax from 3% to 1.5%. It also introduces tax exemptions for retirees and expands mortgage relief.";
-                    } else if (message.toLowerCase().includes('food') || message.toLowerCase().includes('price')) {
-                        response = "The Bill removes excise duty on basic foods like eggs, onions, and potatoes, which should lower prices. VAT exemptions on tea/coffee packaging may also help stabilize prices.";
-                    } else if (message.toLowerCase().includes('business')) {
-                        response = "For businesses, the Bill simplifies compliance for SMEs, waives penalties for system errors, and protects against double taxation in withholding tax scenarios.";
-                    }
-                    
-                    addBotMessage(response);
-                }, 1000);
-            }
-        });
-        
-        userMessage.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage.click();
-            }
-        });
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIzHDaWpDqL_X3NFDSrkN3wejV_qiagfM",
+            authDomain: "srf-Bill.firebaseapp.com",
+            databaseURL: "https://srf-Bill-default-rtdb.firebaseio.com",
+            projectId: "srf-Bill",
+            storageBucket: "srf-Bill.firebasestorage.app",
+            messagingSenderId: "102406855964",
+            appId: "1:102406855964:web:8703311a12056416a52ed9"
+        };
 
-        // Form submission
-        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your feedback! In a real implementation, this would be sent to a server.');
-            this.reset();
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-    // Firebase configuration (replace with your actual config)
-    const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_AUTH_DOMAIN",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_STORAGE_BUCKET",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-    };
-
-    // Initialize Firebase
-    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
@@ -1210,9 +1302,14 @@
             // Get form values
             const name = document.getElementById('name').value || 'Anonymous';
             const email = document.getElementById('email').value || 'Not provided';
-            const feedbackType = document.getElementById('feedbackType').value;
+            const category = document.getElementById('category').value;
             const message = document.getElementById('message').value;
+            const site2 = document.getElementById('site2').value;
+            
+            // Get additional metadata
             const timestamp = new Date();
+            const referer = document.referrer || 'Direct access';
+            const userAgent = navigator.userAgent;
             
             // Disable submit button during processing
             submitBtn.disabled = true;
@@ -1224,9 +1321,12 @@
             db.collection("feedback").add({
                 name: name,
                 email: email,
-                type: feedbackType,
                 message: message,
-                timestamp: timestamp
+                site2: site2,
+                category: category,
+                timestamp: timestamp,
+                referer: referer,
+                userAgent: userAgent
             })
             .then(() => {
                 formStatus.textContent = 'Thank you for your feedback!';
@@ -1245,20 +1345,23 @@
                 }, 5000);
             });
         });
-    } else {
-        console.warn("Firebase not initialized - using mock submission");
-        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formStatus = document.getElementById('formStatus');
-            formStatus.style.display = 'block';
-            formStatus.textContent = 'Thank you for your feedback! (Firebase not configured)';
-            formStatus.style.color = '#4CAF50';
-            this.reset();
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    }
     </script>
 </body>
 </html>
