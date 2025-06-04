@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Bill 2025 Impact Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -30,10 +31,73 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 8px;
+            left: 0;
+            right: 0;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #cccccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 30px 20px 20px;
+            padding: 100px 20px 20px;
         }
 
         .header {
@@ -264,15 +328,359 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
+        /* Key Features Section */
+        .key-features {
+            background: rgba(0, 68, 102, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid rgba(0, 119, 182, 0.5);
+        }
+
+        .feature-item {
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #006600;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-content {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .key-message {
+            font-weight: bold;
+            color: #ffffff;
+            margin: 10px 0 5px;
+        }
+
+        .key-message::before {
+            content: "✓ ";
+            color: #006600;
+        }
+
+        /* Q&A Section */
+        .qa-section {
+            background: rgba(102, 0, 102, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px solid rgba(182, 0, 119, 0.5);
+        }
+
+        .qa-item {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .qa-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .question {
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer {
+            color: #cccccc;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .answer.show {
+            max-height: 500px;
+            margin-top: 15px;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-button {
+            background: linear-gradient(45deg, #cc0000, #006600);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 1.5rem;
+        }
+
+        .chatbot-box {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: #2a2a2a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(90deg, #cc0000, #006600);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #1f1f1f;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            background: #2a2a2a;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: #1f1f1f;
+            color: white;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background: #006600;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background: #006600;
+            color: white;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: #cc0000;
+            color: white;
+            border-bottom-right-radius: 5px;
+            margin-left: auto;
+        }
+
+        /* Resources section */
+        .resources-section {
+            margin: 40px 0;
+        }
+
+        .resource-list {
+            list-style-type: none;
+        }
+
+        .resource-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .resource-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .resource-list a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .resource-list a:hover {
+            text-decoration: underline;
+        }
+
+        .resource-list i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            margin-top: 20px;
+        }
+
+        .footer-logo a {
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .footer-logo img {
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Feedback form */
+        .feedback-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #cc0000, #006600);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .benefits-grid { grid-template-columns: 1fr; gap: 20px; }
             .benefit-card { padding: 25px; }
             .container { padding: 20px 15px; }
+            .chatbot-box {
+                width: 280px;
+            }
+            
+            /* Mobile navigation */
+            .navbar {
+                padding: 15px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: rgba(30, 30, 30, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
         }
 
         /* Scroll animation */
-        .benefit-card {
+        .benefit-card, .feature-item, .qa-item, .resource-list li {
             opacity: 0;
             transform: translateY(30px);
             animation: slideInUp 0.6s ease forwards;
@@ -303,6 +711,26 @@
 <body>
     <div class="flag-stripe"></div>
     
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag_of_Kenya.svg/1200px-Flag_of_Kenya.svg.png" alt="Kenya Flag" style="height: 20px;">
+                Finance Bill 2025
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#overview">Overview</a>
+                <a href="#benefits">Mwanachi </a>
+                <a href="#features">Key Features</a>
+                <a href="#qa">Q&A</a>
+                <a href="#resources">Resources</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
     <div class="floating-elements">
         <div class="floating-circle circle-1"></div>
         <div class="floating-circle circle-2"></div>
@@ -310,20 +738,21 @@
     </div>
 
     <div class="container">
-        <div class="header">
+        <div class="header" id="overview">
             <h1>Untold Truth on the Finance Bill 2025</h1>
-            
+            <!-- <h1>Finance Bill 2025: Key Reforms</h1>  -->
+            <div class="year-badge">2025 Analysis</div>
+            <!-- <p class="subtitle">Modernizing Kenya's tax system for growth and fairness</p> -->
         </div>
-        <div class="">
-
-        </div>
+        
         <div class="summary-banner">
             <div class="summary-text">
-                Beyond the headlines is a Bill built to ease burdens, unlock opportunities, and fuel a thriving future for every Kenyan.            </div>
+                The Finance Bill 2025 focuses on simplifying taxes, supporting businesses, and improving livelihoods without introducing new taxes.
+            </div>
         </div>
 
-        <!-- General Benefits Section -->
-        <h2 class="section-title">How the Bill Affects the Common Mwananchi</h2>
+        <!-- Key Benefits Section -->
+        <h2 class="section-title" id="benefits">How the Bill reform Affects the Common Mwananchi</h2>
         <div class="benefits-grid">
             <div class="benefit-card">
                 <div class="benefit-header">
@@ -331,35 +760,49 @@
                     <div class="benefit-title">No New Taxes</div>
                 </div>
                 <div class="benefit-description">
-                    The Bill introduces no new taxes. Instead, it plans a Ksh.130 billion budget cut by reducing government operational costs, easing pressure on citizens.
+                    The Bill introduces no new taxes. Instead, it focuses on simplifying the tax code and making tax administration easier for both citizens and KRA.
                 </div>
                 <div class="benefit-stats">
-                    <div class="impact-badge">BUDGET CUT</div>
-                    <div class="highlight-badge">KSh 130B</div>
+                    <div class="impact-badge">SIMPLIFICATION</div>
+                    <div class="highlight-badge">FAIR SYSTEM</div>
                 </div>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-header">
-                    <div class="benefit-icon">🍳</div>
-                    <div class="benefit-title">Cheaper Essential Foods</div>
+                    <div class="benefit-icon">🏥</div>
+                    <div class="benefit-title">Tax-Free Social Health Fund</div>
                 </div>
                 <div class="benefit-description">
-                    Excise duty will be removed from imported basic food products like eggs, onions, and potatoes. This is expected to lower the prices of essential foods.
+                    Contributions to and payouts from the Social Health Fund (SHF) are now completely tax-free, making healthcare more accessible and affordable.
                 </div>
                 <div class="benefit-stats">
-                    <div class="impact-badge">COST OF LIVING</div>
-                    <div class="highlight-badge">ESSENTIALS</div>
+                    <div class="impact-badge">HEALTHCARE</div>
+                    <div class="highlight-badge">TAX EXEMPT</div>
                 </div>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-header">
-                    <div class="benefit-icon">🪙</div>
-                    <div class="benefit-title">Lower Tax on Digital Assets</div>
+                    <div class="benefit-icon">👵</div>
+                    <div class="benefit-title">Tax-Free Gratuity</div>
                 </div>
                 <div class="benefit-description">
-                    The tax rate on digital assets like cryptocurrencies will drop from 3% to 1.5%, encouraging growth in the digital economy.
+                    Gratuity and allowances paid under public pension schemes are now exempt from income tax, ensuring retirees keep more of their benefits.
+                </div>
+                <div class="benefit-stats">
+                    <div class="impact-badge">RETIREES</div>
+                    <div class="highlight-badge">FULL BENEFITS</div>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-header">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-title">Digital Assets Tax Reduced</div>
+                </div>
+                <div class="benefit-description">
+                    The tax rate on digital assets like cryptocurrency has been reduced from 3% to 1.5%, supporting innovation in the digital economy.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">50% REDUCTION</div>
@@ -369,38 +812,11 @@
 
             <div class="benefit-card">
                 <div class="benefit-header">
-                    <div class="benefit-icon">💸</div>
-                    <div class="benefit-title">Tax-Free Gratuity</div>
-                </div>
-                <div class="benefit-description">
-                    Gratuity payments from both public and private pension schemes will be tax-exempt, ensuring retirees receive their full benefits.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">FULL BENEFITS</div>
-                    <div class="highlight-badge">RETIREES</div>
-                </div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">📦</div>
-                    <div class="benefit-title">VAT Exemptions on Tea and Coffee</div>
-                </div>
-                <div class="benefit-description">
-                    VAT exemptions for packaging materials used in tea and coffee production. This will lower production costs, make Kenyan tea and coffee more competitive globally.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">AGRICULTURE</div>
-                    <div class="highlight-badge">EXPORTS</div>
-                </div>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-header">
                     <div class="benefit-icon">🏠</div>
                     <div class="benefit-title">Expanded Mortgage Relief</div>
                 </div>
                 <div class="benefit-description">
-                    Tax relief on mortgage interest is now extended to loans used for constructing homes, up to Ksh.360,000 annually—supporting homeownership efforts.
+                    Tax relief on mortgage interest now includes loans for constructing homes (up to Ksh.360,000 annually), supporting homeownership.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">HOME OWNERSHIP</div>
@@ -410,142 +826,203 @@
 
             <div class="benefit-card">
                 <div class="benefit-header">
-                    <div class="benefit-icon">🚀</div>
-                    <div class="benefit-title">Higher Tax-Free Per Diem</div>
-                </div>
-                <div class="benefit-description">
-                    The daily tax-free allowance for employees on official duty rises from Ksh.2,000 to Ksh.10,000, aligning with current living costs.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">400% INCREASE</div>
-                    <div class="highlight-badge">KSh 10,000</div>
-                </div>
-            </div>
-
-        
-           
-
-            <div class="benefit-card">
-                <div class="benefit-header">
                     <div class="benefit-icon">⏱️</div>
-                    <div class="benefit-title">Faster VAT Refunds</div>
+                    <div class="benefit-title">KRA Must Explain Changes</div>
                 </div>
                 <div class="benefit-description">
-                    The period for businesses to lodge VAT refund claims will be reduced from 24 months to 12 months. This will help businesses recover their funds quicker.
+                    KRA must now clearly explain any changes to tax assessments, promoting transparency and allowing taxpayers to understand decisions.
                 </div>
                 <div class="benefit-stats">
-                    <div class="impact-badge">50% FASTER</div>
-                    <div class="highlight-badge">CASH FLOW</div>
-                </div>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">🤝</div>
-                    <div class="benefit-title">Investment Incentives</div>
-                </div>
-                <div class="benefit-description">
-                    Certified companies under the Nairobi International Financial Centre (NIFC) will enjoy lower corporate tax rates and dividends tax exemptions, spurring investment and job creation.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">JOBS</div>
-                    <div class="highlight-badge">GROWTH</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Small Business Owners Section -->
-        <!-- <h2 class="section-title">One Nation, Shared Prosperity!</h2> -->
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">🧾</div>
-                    <div class="benefit-title">Simplified Tax for SMEs</div>
-                </div>
-                <div class="benefit-description">
-                    Clearer exemptions from e-TIMS requirements will ease tax compliance for small and medium enterprises (SMEs).
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">EASIER COMPLIANCE</div>
-                    <div class="highlight-badge">SMEs</div>
-                </div>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">🛡️</div>
-                    <div class="benefit-title">Withholding Tax Fairness</div>
-                </div>
-                <div class="benefit-description">
-                    If a taxpayer has already fully paid their taxes, the person who failed to withhold the tax will no longer be penalized. This change protects businesses from double taxation.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">FAIRNESS</div>
-                    <div class="highlight-badge">PROTECTION</div>
-                </div>
-            </div>
-
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">🔧</div>
-                    <div class="benefit-title">Waiver for System Errors</div>
-                </div>
-                <div class="benefit-description">
-                    Penalties and interest caused by failures in systems like iTax to be waived. This means businesses who comply in good faith but face system-related problems will not be unfairly punished.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">SYSTEM ISSUES</div>
-                    <div class="highlight-badge">WAIVERS</div>
+                    <div class="impact-badge">TRANSPARENCY</div>
+                    <div class="highlight-badge">ACCOUNTABILITY</div>
                 </div>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-header">
                     <div class="benefit-icon">💡</div>
-                    <div class="benefit-title">Support for Startups</div>
+                    <div class="benefit-title">Automated Tax Reliefs</div>
                 </div>
                 <div class="benefit-description">
-                    Startups under the Nairobi International Financial Centre can enjoy reduced corporate tax rates (15% for first 10 years), encouraging entrepreneurship and investment.
+                    Employers must now automatically apply tax reliefs (insurance relief, personal relief) for employees, eliminating separate filings.
                 </div>
                 <div class="benefit-stats">
-                    <div class="impact-badge">ENTREPRENEURS</div>
-                    <div class="highlight-badge">15% TAX RATE</div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Additional Benefits Section -->
-        <h2 class="section-title">Other Impacts</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-header">
-                    <div class="benefit-icon">🏛️</div>
-                    <div class="benefit-title">Advance Pricing Agreements</div>
-                </div>
-                <div class="benefit-description">
-                    New agreements will provide tax certainty for multinationals, encouraging investment and job creation in Kenya.
-                </div>
-                <div class="benefit-stats">
-                    <div class="impact-badge">INVESTMENT</div>
-                    <div class="highlight-badge">JOB CREATION</div>
+                    <div class="impact-badge">SIMPLIFIED</div>
+                    <div class="highlight-badge">AUTOMATED</div>
                 </div>
             </div>
 
             <div class="benefit-card">
                 <div class="benefit-header">
-                    <div class="benefit-icon">👨‍👩‍👧‍👦</div>
-                    <div class="benefit-title">Tax-Free Family Trusts</div>
+                    <div class="benefit-icon">🛡️</div>
+                    <div class="benefit-title">System Error Waivers</div>
                 </div>
                 <div class="benefit-description">
-                    Transfers of land to family trusts will be exempt from capital gains tax, helping families in succession planning and estate management.
+                    Penalties caused by electronic system errors (like iTax failures) can now be waived, protecting taxpayers from unfair fines.
                 </div>
                 <div class="benefit-stats">
-                    <div class="impact-badge">FAMILY PLANNING</div>
-                    <div class="highlight-badge">ESTATE MANAGEMENT</div>
+                    <div class="impact-badge">FAIRNESS</div>
+                    <div class="highlight-badge">PROTECTION</div>
                 </div>
             </div>
         </div>
+
+        <!-- Key Features Section -->
+        <h2 class="section-title" id="features">Key Features Explained</h2>
+        <div class="key-features">
+            <div class="feature-item">
+                <div class="feature-title">1. No New Taxes. No Tax Rate Hikes</div>
+                <div class="feature-content">
+                    The Finance Bill 2025 does not introduce any new taxes. Instead, it focuses on cleaning up outdated laws, simplifying the tax code, and making tax administration easier for both citizens and the Kenya Revenue Authority (KRA). The goal is to create a fairer, more predictable tax environment.
+                </div>
+                <div class="key-message">No new taxes have been introduced in 2025</div>
+                <div class="key-message">The focus is on making the tax system simpler and clearer</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">2. Tax-Free Per Diem Increased</div>
+                <div class="feature-content">
+                    Daily allowances (per diems) for employees working outside their duty station have been increased from Ksh 2,000 to Ksh 10,000 without attracting tax. This change reflects the real cost of meals, travel, and accommodation, especially with rising living expenses across the country.
+                </div>
+                <div class="key-message">Workers on official duty can now receive up to Ksh 10,000 per day tax-free</div>
+                <div class="key-message">This benefits both public and private sector employees</div>
+                <div class="key-message">Recognizes rising costs and supports field workers</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">3. Tea & Coffee Sector Support</div>
+                <div class="feature-content">
+                    VAT will no longer apply to packaging materials used in the tea and coffee sectors. This helps farmers, exporters, and processors by lowering their costs and boosting Kenya's competitiveness in global markets.
+                </div>
+                <div class="key-message">No VAT on tea and coffee packaging materials</div>
+                <div class="key-message">Supports local farmers and exporters</div>
+                <div class="key-message">Boosts Kenya's global tea and coffee market presence</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">4. Electric Transport Boost</div>
+                <div class="feature-content">
+                    Electric bicycles, buses, and lithium-ion batteries will now be exempt from VAT. This is part of Kenya's strategy to promote cleaner, more sustainable transport solutions and reduce reliance on fossil fuels.
+                </div>
+                <div class="key-message">No VAT on electric bikes, buses, or lithium batteries</div>
+                <div class="key-message">Supports a cleaner, greener Kenya</div>
+                <div class="key-message">Encourages shift to eco-friendly transport</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">5. Digital Economy Taxed Fairly</div>
+                <div class="feature-content">
+                    Non-resident individuals and businesses making money from digital platforms in Kenya (e.g., selling online or offering digital services) will now be taxed just like local businesses. This ensures fair competition and brings global digital companies into Kenya's tax net.
+                </div>
+                <div class="key-message">Foreign digital businesses must now pay tax on income earned in Kenya</div>
+                <div class="key-message">Protects local businesses from unfair competition</div>
+                <div class="key-message">Everyone earning from Kenya contributes fairly</div>
+            </div>
+        </div>
+
+        <!-- Q&A Section -->
+        <h2 class="section-title" id="qa">Questions & Answers</h2>
+        <div class="qa-section">
+            <div class="qa-item">
+                <div class="question">
+                    How does the Bill help ordinary Kenyans?
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="answer">
+                    The Bill provides multiple benefits including tax-free gratuity for retirees, increased tax-free per diems, automated tax reliefs, and protection from penalties due to system errors. It also removes VAT on essential items like electric transport and tea/coffee packaging.
+                </div>
+            </div>
+            
+            <div class="qa-item">
+                <div class="question">
+                    What support does the Bill provide for businesses?
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="answer">
+                    The Bill simplifies tax compliance, waives penalties for system errors, protects against double taxation, and reduces taxes on digital assets. It also provides clarity on tax assessments and extends time for VAT refund processing to ensure accuracy.
+                </div>
+            </div>
+            
+            <div class="qa-item">
+                <div class="question">
+                    How does the Bill promote fairness in taxation?
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="answer">
+                    The Bill ensures foreign digital businesses pay taxes like local ones, taxes luxury aviation, removes special rates for large housing developers, and requires KRA to explain assessment changes. It also prevents double penalties for tax withholding issues.
+                </div>
+            </div>
+            
+            <div class="qa-item">
+                <div class="question">
+                    What environmental benefits does the Bill include?
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="answer">
+                    The Bill exempts electric bicycles, buses, and lithium-ion batteries from VAT to promote cleaner transport. It also shifts tourism support from tax breaks to structural reforms for sustainable growth.
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Form
+        <h2 class="section-title">Share Your Thoughts</h2>
+        <div class="feedback-form">
+            <form id="financeBillFeedback">
+                <div class="form-group">
+                    <label for="name">Your Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="feedbackType">Type of Feedback</label>
+                    <select id="feedbackType" name="feedbackType">
+                        <option value="general">General Comment</option>
+                        <option value="question">Question</option>
+                        <option value="suggestion">Suggestion</option>
+                        <option value="correction">Correction</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Feedback</label>
+                    <textarea id="message" name="message" placeholder="Share your thoughts, questions, or suggestions about the Finance Bill 2025" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div> -->
+
+        <!-- Resources Section -->
+        <!-- <h2 class="section-title" id="resources">Official Resources</h2>
+        <div class="resources-section">
+            <ul class="resource-list">
+                <li>
+                    <a href="https://www.parliament.go.ke/the-finance-bill-2025" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Official Finance Bill 2025 PDF (Parliament of Kenya)
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.kra.go.ke/finance-bill-2025" target="_blank">
+                        <i class="fas fa-landmark"></i> KRA Finance Bill 2025 Analysis
+                    </a>
+                </li>
+                <li>
+                    <a href="https://home.kpmg/ke/en/home/insights/2025/05/finance-bill-2025-analysis.html" target="_blank">
+                        <i class="fas fa-chart-line"></i> KPMG Professional Analysis
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.treasury.go.ke/finance-bill-2025" target="_blank">
+                        <i class="fas fa-coins"></i> National Treasury Explanatory Memorandum
+                    </a>
+                </li>
+            </ul>
+        </div> -->
 
         <div class="summary-banner" style="margin-top: 60px;">
             <div class="summary-text">
@@ -553,5 +1030,153 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Finance Bill 2025 Impact Analysis - Providing factual information for Kenyan citizens</p>
+            <div class="footer-logo">
+                <a href="#" target="_blank">
+                    <!-- <img src="https://wp-content/uploads/2023/05/amkeni-logo-white.png" alt="Amkeni Logo"> -->
+                    Tujengenchi
+                </a>
+            </div>
+            <p style="margin-top: 20px;">© 2025 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <!-- <div class="chatbot-container">
+        <div class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <span>Finance Bill Assistant</span>
+                <i class="fas fa-times" id="closeChatbot"></i>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Hello! I can help answer your questions about the Finance Bill 2025. What would you like to know?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userMessage" placeholder="Ask about the Finance Bill...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Q&A Toggle functionality
+        document.querySelectorAll('.question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.toggle-icon');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('rotate');
+            });
+        });
+
+        // Chatbot functionality
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatbotBox = document.getElementById('chatbotBox');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const sendMessage = document.getElementById('sendMessage');
+        const userMessage = document.getElementById('userMessage');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        
+        chatbotButton.addEventListener('click', () => {
+            chatbotBox.style.display = chatbotBox.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        closeChatbot.addEventListener('click', () => {
+            chatbotBox.style.display = 'none';
+        });
+        
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        sendMessage.addEventListener('click', () => {
+            const message = userMessage.value.trim();
+            if (message) {
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = message;
+                chatbotMessages.appendChild(userDiv);
+                
+                // Clear input
+                userMessage.value = '';
+                
+                // Simulate bot response (in a real app, this would call an API)
+                setTimeout(() => {
+                    let response = "I'm a simulated response. In a real implementation, this would connect to a backend service with Finance Bill information.";
+                    
+                    if (message.toLowerCase().includes('tax')) {
+                        response = "The Finance Bill 2025 reduces several tax rates, including digital assets tax from 3% to 1.5%. It also introduces tax exemptions for retirees and expands mortgage relief.";
+                    } else if (message.toLowerCase().includes('food') || message.toLowerCase().includes('price')) {
+                        response = "The Bill removes excise duty on basic foods like eggs, onions, and potatoes, which should lower prices. VAT exemptions on tea/coffee packaging may also help stabilize prices.";
+                    } else if (message.toLowerCase().includes('business')) {
+                        response = "For businesses, the Bill simplifies compliance for SMEs, waives penalties for system errors, and protects against double taxation in withholding tax scenarios.";
+                    }
+                    
+                    addBotMessage(response);
+                }, 1000);
+            }
+        });
+        
+        userMessage.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+
+        // Form submission
+        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback! In a real implementation, this would be sent to a server.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
