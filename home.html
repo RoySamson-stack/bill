@@ -92,6 +92,7 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .container {
@@ -711,14 +712,17 @@
                 top: 68px;
                 left: 0;
                 right: 0;
-                background: rgba(30, 30, 30, 0.95);
+                background: rgba(30, 30, 30, 0.98);
                 flex-direction: column;
                 align-items: center;
                 padding: 20px;
                 gap: 15px;
-                transform: translateY(-100%);
+                transform: translateY(-150%);
                 transition: transform 0.3s ease;
                 z-index: 998;
+                height: auto;
+                max-height: calc(100vh - 68px);
+                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -727,6 +731,11 @@
             
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                font-size: 1.1rem;
             }
         }
 
@@ -780,7 +789,7 @@
                 <a href="#resources">Resources</a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" id="menuIcon"></i>
             </button>
         </div>
     </nav>
@@ -919,61 +928,8 @@
             </div>
         </div>
 
-        <!-- Key Features Section
-        <h2 class="section-title" id="features">Key Features Explained</h2>
-        <div class="key-features">
-            <div class="feature-item">
-                <div class="feature-title">1. No New Taxes. No Tax Rate Hikes</div>
-                <div class="feature-content">
-                    The Finance Bill 2025 does not introduce any new taxes. Instead, it focuses on cleaning up outdated laws, simplifying the tax code, and making tax administration easier for both citizens and the Kenya Revenue Authority (KRA). The goal is to create a fairer, more predictable tax environment.
-                </div>
-                <div class="key-message">No new taxes have been introduced in 2025</div>
-                <div class="key-message">The focus is on making the tax system simpler and clearer</div>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-title">2. Tax-Free Per Diem Increased</div>
-                <div class="feature-content">
-                    Daily allowances (per diems) for employees working outside their duty station have been increased from Ksh 2,000 to Ksh 10,000 without attracting tax. This change reflects the real cost of meals, travel, and accommodation, especially with rising living expenses across the country.
-                </div>
-                <div class="key-message">Workers on official duty can now receive up to Ksh 10,000 per day tax-free</div>
-                <div class="key-message">This benefits both public and private sector employees</div>
-                <div class="key-message">Recognizes rising costs and supports field workers</div>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-title">3. Tea & Coffee Sector Support</div>
-                <div class="feature-content">
-                    VAT will no longer apply to packaging materials used in the tea and coffee sectors. This helps farmers, exporters, and processors by lowering their costs and boosting Kenya's competitiveness in global markets.
-                </div>
-                <div class="key-message">No VAT on tea and coffee packaging materials</div>
-                <div class="key-message">Supports local farmers and exporters</div>
-                <div class="key-message">Boosts Kenya's global tea and coffee market presence</div>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-title">4. Electric Transport Boost</div>
-                <div class="feature-content">
-                    Electric bicycles, buses, and lithium-ion batteries will now be exempt from VAT. This is part of Kenya's strategy to promote cleaner, more sustainable transport solutions and reduce reliance on fossil fuels.
-                </div>
-                <div class="key-message">No VAT on electric bikes, buses, or lithium batteries</div>
-                <div class="key-message">Supports a cleaner, greener Kenya</div>
-                <div class="key-message">Encourages shift to eco-friendly transport</div>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-title">5. Digital Economy Taxed Fairly</div>
-                <div class="feature-content">
-                    Non-resident individuals and businesses making money from digital platforms in Kenya (e.g., selling online or offering digital services) will now be taxed just like local businesses. This ensures fair competition and brings global digital companies into Kenya's tax net.
-                </div>
-                <div class="key-message">Foreign digital businesses must now pay tax on income earned in Kenya</div>
-                <div class="key-message">Protects local businesses from unfair competition</div>
-                <div class="key-message">Everyone earning from Kenya contributes fairly</div>
-            </div>
-        </div> -->
-
         <!-- Debunking Myths Section -->
-        <h2 class="section-title" id="myths">Debunking Myths & Misconceptions</h2>
+        <h2 class="section-title" id="myths">Myths & Misconceptions</h2>
         <div class="myths-section">
             <div class="myth-item">
                 <div class="myth-title">
@@ -1256,16 +1212,36 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
         
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            // Toggle between bars and times icon
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container') && window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
         });
 
         // Q&A Toggle functionality
