@@ -5,6 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Bill 2025 Impact Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);var n=t;if("undefined"!=typeof n)for(var p=0;p<r.length&&(n=n[r[p]],null!=n);p++)if("function"==typeof n)if("capture"===e){var u=new Date;u.setTime(u.getTime()+1814400000),document.cookie="__ph_opt_out=1; expires="+u.toUTCString()+"; path=/; secure; samesite=none"}else n.apply(t,arguments)}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        
+        posthog.init(process.env.REACT_APP_POSTHOG_KEY, {
+            api_host: process.env.REACT_APP_POSTHOG_HOST,
+            session_recording: {
+            recordCrossOriginIframes: true
+            },
+            autocapture: {
+            capture_pageview: true,
+            capture_pageleave: true,
+            css_selector_allowlist: ['.benefit-card', '.nav-links a', '.submit-btn', '.question'],
+            element_allowlist: ['a', 'button', 'form', 'input', 'select', 'textarea']
+            },
+            bootstrap: {
+            featureFlags: {}
+            }
+        });
+
+        function trackBenefitCardClick(benefitTitle) {
+            posthog.capture('benefit_card_clicked', {
+                benefit_title: benefitTitle,
+                section: 'benefits'
+            });
+        }
+
+        function trackNavigationClick(navItem) {
+            posthog.capture('navigation_clicked', {
+                nav_item: navItem,
+                page_section: 'header'
+            });
+        }
+
+        function trackQAToggle(question) {
+            posthog.capture('qa_question_expanded', {
+                question: question,
+                section: 'qa'
+            });
+        }
+
+        function trackFormSubmission(category) {
+            posthog.capture('feedback_form_submitted', {
+                form_category: category,
+                section: 'feedback'
+            });
+        }
+
+        function trackMythView(mythTitle) {
+            posthog.capture('myth_viewed', {
+                myth_title: mythTitle,
+                section: 'myths'
+            });
+        }
+
+        function trackResourceClick(resourceTitle, resourceUrl) {
+            posthog.capture('resource_clicked', {
+                resource_title: resourceTitle,
+                resource_url: resourceUrl,
+                section: 'resources'
+            });
+        }
+
+        window.addEventListener('load', function() {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            posthog.capture('page_load_time', {
+                load_time_ms: loadTime,
+                page: 'finance_bill_2025'
+            });
+        });
+
+        let maxScrollDepth = 0;
+        function trackScrollDepth() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollDepth = Math.round((scrollTop / documentHeight) * 100);
+    
+    if (scrollDepth > maxScrollDepth) {
+        const previousMax = maxScrollDepth;
+        maxScrollDepth = scrollDepth;
+        
+        if (scrollDepth >= 25 && previousMax < 25) {
+            posthog.capture('scroll_depth_25');
+        } else if (scrollDepth >= 50 && previousMax < 50) {
+            posthog.capture('scroll_depth_50');
+        } else if (scrollDepth >= 75 && previousMax < 75) {
+            posthog.capture('scroll_depth_75');
+        } else if (scrollDepth >= 90 && previousMax < 90) {
+            posthog.capture('scroll_depth_90');
+        }
+    }
+}
+
+        let startTime = Date.now();
+        window.addEventListener('beforeunload', function() {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            posthog.capture('time_on_page', {
+                time_spent_seconds: timeSpent,
+                page: 'finance_bill_2025'
+            });
+        });
+    </script>
     <style>
         * {
             margin: 0;
@@ -1252,6 +1353,10 @@
                 
                 answer.classList.toggle('show');
                 icon.classList.toggle('rotate');
+                
+                // Track the toggle
+                const questionText = question.textContent.replace('', '').trim();
+                trackQAToggle(questionText);
             });
         });
 
@@ -1272,57 +1377,88 @@
 
         // Feedback form submission
         document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formStatus = document.getElementById('formStatus');
-            const submitBtn = this.querySelector('.submit-btn');
-            
-            // Get form values
-            const name = document.getElementById('name').value || 'Anonymous';
-            const email = document.getElementById('email').value || 'Not provided';
-            const category = document.getElementById('category').value;
-            const message = document.getElementById('message').value;
-            const site2 = document.getElementById('site2').value;
-            
-            // Get additional metadata
-            const timestamp = new Date();
-            const referer = document.referrer || 'Direct access';
-            const userAgent = navigator.userAgent;
-            
-            // Disable submit button during processing
-            submitBtn.disabled = true;
-            formStatus.style.display = 'block';
-            formStatus.textContent = 'Submitting your feedback...';
+    e.preventDefault();
+    
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = this.querySelector('.submit-btn');
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim() || 'Anonymous';
+    const email = document.getElementById('email').value.trim() || 'Not provided';
+    const category = document.getElementById('category').value;
+    const message = document.getElementById('message').value.trim();
+    const site2 = document.getElementById('site2').value;
+    
+    // Validation
+    if (!message) {
+        formStatus.style.display = 'block';
+        formStatus.textContent = 'Please enter your feedback message.';
+        formStatus.style.color = '#cc0000';
+        return;
+    }
+    
+    if (email !== 'Not provided' && !email.includes('@')) {
+        formStatus.style.display = 'block';
+        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.style.color = '#cc0000';
+        return;
+    }
+    
+    // Track form submission
+    trackFormSubmission(category);
+    
+    // Get additional metadata
+    const timestamp = new Date();
+    const referer = document.referrer || 'Direct access';
+    const userAgent = navigator.userAgent;
+    
+    // Disable submit button during processing
+    submitBtn.disabled = true;
+    formStatus.style.display = 'block';
+    formStatus.textContent = 'Submitting your feedback...';
+    formStatus.style.color = '#4CAF50';
+    
+    // Add to Firestore (if Firebase is configured)
+    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+        db.collection("feedback").add({
+            name: name,
+            email: email,
+            message: message,
+            site2: site2,
+            category: category,
+            timestamp: timestamp,
+            referer: referer,
+            userAgent: userAgent
+        })
+        .then(() => {
+            formStatus.textContent = 'Thank you for your feedback!';
             formStatus.style.color = '#4CAF50';
-            
-            // Add to Firestore
-            db.collection("feedback").add({
-                name: name,
-                email: email,
-                message: message,
-                site2: site2,
-                category: category,
-                timestamp: timestamp,
-                referer: referer,
-                userAgent: userAgent
-            })
-            .then(() => {
-                formStatus.textContent = 'Thank you for your feedback!';
-                formStatus.style.color = '#4CAF50';
-                this.reset();
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-                formStatus.textContent = 'Error submitting feedback. Please try again.';
-                formStatus.style.color = '#cc0000';
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                }, 5000);
-            });
+            this.reset();
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+            formStatus.textContent = 'Error submitting feedback. Please try again.';
+            formStatus.style.color = '#cc0000';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
         });
+    } else {
+        // Fallback if Firebase is not configured
+        setTimeout(() => {
+            formStatus.textContent = 'Thank you for your feedback! (Note: Firebase not configured)';
+            formStatus.style.color = '#4CAF50';
+            this.reset();
+            submitBtn.disabled = false;
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 3000);
+        }, 1000);
+    }
+});
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1340,6 +1476,59 @@
                 }
             });
         });
+
+        // Add scroll event listener
+window.addEventListener('scroll', trackScrollDepth);
+
+// Add click tracking for benefit cards
+document.addEventListener('DOMContentLoaded', function() {
+    // Track benefit card clicks
+    document.querySelectorAll('.benefit-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('.benefit-title').textContent;
+            trackBenefitCardClick(title);
+        });
+    });
+
+    // Track navigation clicks
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            const navItem = this.textContent;
+            trackNavigationClick(navItem);
+        });
+    });
+
+    // Track Q&A toggles
+    document.querySelectorAll('.question').forEach(question => {
+        question.addEventListener('click', function() {
+            const questionText = this.textContent.replace('', '').trim();
+            trackQAToggle(questionText);
+        });
+    });
+
+    // Track resource clicks
+    document.querySelectorAll('.resource-list a').forEach(link => {
+        link.addEventListener('click', function() {
+            const title = this.textContent.trim();
+            const url = this.href;
+            trackResourceClick(title, url);
+        });
+    });
+
+    // Track myth views (when they become visible)
+    const mythItems = document.querySelectorAll('.myth-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const mythTitle = entry.target.querySelector('.myth-title').textContent;
+                trackMythView(mythTitle);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    mythItems.forEach(item => observer.observe(item));
+});
     </script>
 </body>
 </html>
