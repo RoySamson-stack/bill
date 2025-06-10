@@ -1,112 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Bill 2025 Impact Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
-    <!-- <script>
-        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);var n=t;if("undefined"!=typeof n)for(var p=0;p<r.length&&(n=n[r[p]],null!=n);p++)if("function"==typeof n)if("capture"===e){var u=new Date;u.setTime(u.getTime()+1814400000),document.cookie="__ph_opt_out=1; expires="+u.toUTCString()+"; path=/; secure; samesite=none"}else n.apply(t,arguments)}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-        
-        posthog.init(process.env.REACT_APP_POSTHOG_KEY, {
-            api_host: process.env.REACT_APP_POSTHOG_HOST,
+
+    <script>
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]); var n = t; if ("undefined" != typeof n) for (var p = 0; p < r.length && (n = n[r[p]], null != n); p++)if ("function" == typeof n) if ("capture" === e) { var u = new Date; u.setTime(u.getTime() + 1814400000), document.cookie = "__ph_opt_out=1; expires=" + u.toUTCString() + "; path=/; secure; samesite=none" } else n.apply(t, arguments) } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+
+        posthog.init('phc_qxU3nvf6EjjyqDQ3ES75oPJo4mv7rP4R41hdZgsO0Eg', {
+            api_host: 'https://us.i.posthog.com',
             session_recording: {
-            recordCrossOriginIframes: true
+                recordCrossOriginIframes: true
             },
             autocapture: {
-            capture_pageview: true,
-            capture_pageleave: true,
-            css_selector_allowlist: ['.benefit-card', '.nav-links a', '.submit-btn', '.question'],
-            element_allowlist: ['a', 'button', 'form', 'input', 'select', 'textarea']
+                capture_pageview: true,
+                capture_pageleave: true,
+                css_selector_allowlist: ['.benefit-card', '.nav-links a', '.submit-btn', '.question'],
+                element_allowlist: ['a', 'button', 'form', 'input', 'select', 'textarea']
             },
             bootstrap: {
-            featureFlags: {}
+                featureFlags: {}
             }
         });
 
         function trackBenefitCardClick(benefitTitle) {
-            posthog.capture('benefit_card_clicked', {
-                benefit_title: benefitTitle,
-                section: 'benefits'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('benefit_card_clicked', {
+                    benefit_title: benefitTitle,
+                    section: 'benefits'
+                });
+            }
         }
 
         function trackNavigationClick(navItem) {
-            posthog.capture('navigation_clicked', {
-                nav_item: navItem,
-                page_section: 'header'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('navigation_clicked', {
+                    nav_item: navItem,
+                    page_section: 'header'
+                });
+            }
         }
 
         function trackQAToggle(question) {
-            posthog.capture('qa_question_expanded', {
-                question: question,
-                section: 'qa'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('qa_question_expanded', {
+                    question: question,
+                    section: 'qa'
+                });
+            }
         }
 
         function trackFormSubmission(category) {
-            posthog.capture('feedback_form_submitted', {
-                form_category: category,
-                section: 'feedback'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('feedback_form_submitted', {
+                    form_category: category,
+                    section: 'feedback'
+                });
+            }
         }
 
         function trackMythView(mythTitle) {
-            posthog.capture('myth_viewed', {
-                myth_title: mythTitle,
-                section: 'myths'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('myth_viewed', {
+                    myth_title: mythTitle,
+                    section: 'myths'
+                });
+            }
         }
 
         function trackResourceClick(resourceTitle, resourceUrl) {
-            posthog.capture('resource_clicked', {
-                resource_title: resourceTitle,
-                resource_url: resourceUrl,
-                section: 'resources'
-            });
+            if (typeof posthog !== 'undefined') {
+                posthog.capture('resource_clicked', {
+                    resource_title: resourceTitle,
+                    resource_url: resourceUrl,
+                    section: 'resources'
+                });
+            }
         }
 
-        window.addEventListener('load', function() {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            posthog.capture('page_load_time', {
-                load_time_ms: loadTime,
-                page: 'finance_bill_2025'
-            });
+        window.addEventListener('load', function () {
+            if (typeof posthog !== 'undefined') {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                posthog.capture('page_load_time', {
+                    load_time_ms: loadTime,
+                    page: 'finance_bill_2025'
+                });
+            }
         });
 
         let maxScrollDepth = 0;
         function trackScrollDepth() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollDepth = Math.round((scrollTop / documentHeight) * 100);
-    
-    if (scrollDepth > maxScrollDepth) {
-        const previousMax = maxScrollDepth;
-        maxScrollDepth = scrollDepth;
-        
-        if (scrollDepth >= 25 && previousMax < 25) {
-            posthog.capture('scroll_depth_25');
-        } else if (scrollDepth >= 50 && previousMax < 50) {
-            posthog.capture('scroll_depth_50');
-        } else if (scrollDepth >= 75 && previousMax < 75) {
-            posthog.capture('scroll_depth_75');
-        } else if (scrollDepth >= 90 && previousMax < 90) {
-            posthog.capture('scroll_depth_90');
+            if (typeof posthog !== 'undefined') {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollDepth = Math.round((scrollTop / documentHeight) * 100);
+
+                if (scrollDepth > maxScrollDepth) {
+                    const previousMax = maxScrollDepth;
+                    maxScrollDepth = scrollDepth;
+
+                    if (scrollDepth >= 25 && previousMax < 25) {
+                        posthog.capture('scroll_depth_25');
+                    } else if (scrollDepth >= 50 && previousMax < 50) {
+                        posthog.capture('scroll_depth_50');
+                    } else if (scrollDepth >= 75 && previousMax < 75) {
+                        posthog.capture('scroll_depth_75');
+                    } else if (scrollDepth >= 90 && previousMax < 90) {
+                        posthog.capture('scroll_depth_90');
+                    }
+                }
+            }
         }
-    }
-}
 
         let startTime = Date.now();
-        window.addEventListener('beforeunload', function() {
-            const timeSpent = Math.round((Date.now() - startTime) / 1000);
-            posthog.capture('time_on_page', {
-                time_spent_seconds: timeSpent,
-                page: 'finance_bill_2025'
-            });
+        window.addEventListener('beforeunload', function () {
+            if (typeof posthog !== 'undefined') {
+                const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                posthog.capture('time_on_page', {
+                    time_spent_seconds: timeSpent,
+                    page: 'finance_bill_2025'
+                });
+            }
         });
-    </script> -->
+    </script>
     <style>
         * {
             margin: 0;
@@ -130,7 +149,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Navigation Bar */
@@ -145,7 +164,7 @@
             display: flex;
             justify-content: center;
             z-index: 999;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-container {
@@ -229,7 +248,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .subtitle {
@@ -281,7 +300,7 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 2px solid transparent;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             min-height: 200px;
         }
@@ -317,7 +336,7 @@
         .benefit-icon {
             font-size: 2.5rem;
             margin-right: 15px;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
         }
 
         .benefit-title {
@@ -343,7 +362,7 @@
             align-items: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .impact-badge {
@@ -411,8 +430,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         .summary-banner {
@@ -421,14 +447,14 @@
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .summary-text {
             font-size: 1.4rem;
             font-weight: 600;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         /* Key Features Section */
@@ -541,7 +567,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             font-size: 1.5rem;
         }
 
@@ -553,7 +579,7 @@
             background: #2a2a2a;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             display: none;
         }
 
@@ -664,7 +690,7 @@
             text-align: center;
             padding: 30px 0;
             margin-top: 60px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #aaaaaa;
             font-size: 0.9rem;
         }
@@ -678,14 +704,14 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 8px 15px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
 
         .footer-logo a:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .footer-logo img {
@@ -727,7 +753,8 @@
             min-height: 120px;
             resize: vertical;
         }
-        .form-group option{
+
+        .form-group option {
             color: black;
         }
 
@@ -744,7 +771,7 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* Myths section */
@@ -796,19 +823,32 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .benefits-grid { grid-template-columns: 1fr; gap: 20px; }
-            .benefit-card { padding: 25px; }
-            .container { padding: 20px 15px; }
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .benefit-card {
+                padding: 25px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
             .chatbot-box {
                 width: 280px;
             }
-            
+
             /* Mobile navigation */
             .navbar {
                 padding: 15px;
             }
-            
+
             .nav-links {
                 position: fixed;
                 top: 68px;
@@ -826,11 +866,11 @@
                 max-height: calc(100vh - 68px);
                 overflow-y: auto;
             }
-            
+
             .nav-links.active {
                 transform: translateY(0);
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -842,7 +882,11 @@
         }
 
         /* Scroll animation */
-        .benefit-card, .feature-item, .qa-item, .resource-list li, .myth-item {
+        .benefit-card,
+        .feature-item,
+        .qa-item,
+        .resource-list li,
+        .myth-item {
             opacity: 0;
             transform: translateY(30px);
             animation: slideInUp 0.6s ease forwards;
@@ -856,30 +900,67 @@
         }
 
         /* Stagger the animations */
-        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
-        .benefit-card:nth-child(2) { animation-delay: 0.2s; }
-        .benefit-card:nth-child(3) { animation-delay: 0.3s; }
-        .benefit-card:nth-child(4) { animation-delay: 0.4s; }
-        .benefit-card:nth-child(5) { animation-delay: 0.5s; }
-        .benefit-card:nth-child(6) { animation-delay: 0.6s; }
-        .benefit-card:nth-child(7) { animation-delay: 0.7s; }
-        .benefit-card:nth-child(8) { animation-delay: 0.8s; }
-        .benefit-card:nth-child(9) { animation-delay: 0.9s; }
-        .benefit-card:nth-child(10) { animation-delay: 1.0s; }
-        .benefit-card:nth-child(11) { animation-delay: 1.1s; }
-        .benefit-card:nth-child(12) { animation-delay: 1.2s; }
+        .benefit-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .benefit-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .benefit-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .benefit-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .benefit-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .benefit-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .benefit-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .benefit-card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .benefit-card:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .benefit-card:nth-child(10) {
+            animation-delay: 1.0s;
+        }
+
+        .benefit-card:nth-child(11) {
+            animation-delay: 1.1s;
+        }
+
+        .benefit-card:nth-child(12) {
+            animation-delay: 1.2s;
+        }
     </style>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 </head>
+
 <body>
     <div class="flag-stripe"></div>
-    
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag_of_Kenya.svg/1200px-Flag_of_Kenya.svg.png" alt="Kenya Flag" style="height: 20px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Flag_of_Kenya.svg/1200px-Flag_of_Kenya.svg.png"
+                    alt="Kenya Flag" style="height: 20px;">
                 Finance Bill 2025
             </a>
             <div class="nav-links" id="navLinks">
@@ -895,7 +976,7 @@
             </button>
         </div>
     </nav>
-    
+
     <div class="floating-elements">
         <div class="floating-circle circle-1"></div>
         <div class="floating-circle circle-2"></div>
@@ -907,10 +988,11 @@
             <h1>Untold Truth on the Finance Bill 2025</h1>
             <div class="year-badge">2025 Analysis</div>
         </div>
-        
+
         <div class="summary-banner">
             <div class="summary-text">
-                The Finance Bill 2025 focuses on simplifying taxes, supporting businesses, and improving livelihoods without introducing new taxes.
+                The Finance Bill 2025 focuses on simplifying taxes, supporting businesses, and improving livelihoods
+                without introducing new taxes.
             </div>
         </div>
 
@@ -923,7 +1005,8 @@
                     <div class="benefit-title">No New Taxes</div>
                 </div>
                 <div class="benefit-description">
-                    The Bill introduces no new taxes. Instead, it focuses on simplifying the tax code and making tax administration easier for both citizens and KRA.
+                    The Bill introduces no new taxes. Instead, it focuses on simplifying the tax code and making tax
+                    administration easier for both citizens and KRA.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">SIMPLIFICATION</div>
@@ -937,7 +1020,8 @@
                     <div class="benefit-title">Tax-Free Social Health Fund</div>
                 </div>
                 <div class="benefit-description">
-                    Contributions to and payouts from the Social Health Insurance Fund (SHIF) are now completely tax-free, making healthcare more accessible and affordable.
+                    Contributions to and payouts from the Social Health Insurance Fund (SHIF) are now completely
+                    tax-free, making healthcare more accessible and affordable.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">HEALTHCARE</div>
@@ -951,7 +1035,8 @@
                     <div class="benefit-title">Tax-Free Gratuity and Pensions</div>
                 </div>
                 <div class="benefit-description">
-                    Gratuity and allowances paid under public pension schemes are now exempt from income tax, ensuring retirees keep more of their benefits.
+                    Gratuity and allowances paid under public pension schemes are now exempt from income tax, ensuring
+                    retirees keep more of their benefits.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">RETIREES</div>
@@ -965,7 +1050,8 @@
                     <div class="benefit-title">Digital Assets Tax Reduced</div>
                 </div>
                 <div class="benefit-description">
-                    The tax rate on digital assets like cryptocurrency has been reduced from 3% to 1.5%, supporting innovation in the digital economy.
+                    The tax rate on digital assets like cryptocurrency has been reduced from 3% to 1.5%, supporting
+                    innovation in the digital economy.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">50% REDUCTION</div>
@@ -979,7 +1065,8 @@
                     <div class="benefit-title">Expanded Mortgage Relief</div>
                 </div>
                 <div class="benefit-description">
-                    Tax relief on mortgage interest now includes loans for constructing homes (up to Ksh.360,000 annually), supporting homeownership.
+                    Tax relief on mortgage interest now includes loans for constructing homes (up to Ksh.360,000
+                    annually), supporting homeownership.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">HOME OWNERSHIP</div>
@@ -993,7 +1080,8 @@
                     <div class="benefit-title">KRA Must Explain tax Changes</div>
                 </div>
                 <div class="benefit-description">
-                    KRA must now clearly explain any changes to tax assessments, promoting transparency and allowing taxpayers to understand decisions.
+                    KRA must now clearly explain any changes to tax assessments, promoting transparency and allowing
+                    taxpayers to understand decisions.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">TRANSPARENCY</div>
@@ -1007,7 +1095,8 @@
                     <div class="benefit-title">Automated Tax Reliefs</div>
                 </div>
                 <div class="benefit-description">
-                    Employers must now automatically apply tax reliefs (insurance relief, personal relief) for employees, eliminating separate filings.
+                    Employers must now automatically apply tax reliefs (insurance relief, personal relief) for
+                    employees, eliminating separate filings.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">SIMPLIFIED</div>
@@ -1021,7 +1110,8 @@
                     <div class="benefit-title">System Error Waivers</div>
                 </div>
                 <div class="benefit-description">
-                    Penalties caused by electronic system errors (like iTax failures) can now be waived, protecting taxpayers from unfair fines.
+                    Penalties caused by electronic system errors (like iTax failures) can now be waived, protecting
+                    taxpayers from unfair fines.
                 </div>
                 <div class="benefit-stats">
                     <div class="impact-badge">FAIRNESS</div>
@@ -1039,137 +1129,172 @@
                     Increase of VAT from 16% to 18%
                 </div>
                 <div class="myth-content">
-                    This is false as the Finance Bill 2025 does not propose any change to the VAT rate. It remains at 16%. This confusion likely comes from earlier regional tax harmonization talks under the Medium-Term Revenue Strategy (MTRS). Advisory firms like PwC and KPMG have confirmed that the current Bill does not suggest raising the VAT rate.
+                    This is false as the Finance Bill 2025 does not propose any change to the VAT rate. It remains at
+                    16%. This confusion likely comes from earlier regional tax harmonization talks under the Medium-Term
+                    Revenue Strategy (MTRS). Advisory firms like PwC and KPMG have confirmed that the current Bill does
+                    not suggest raising the VAT rate.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status partly-true-status">Partly True</span>
                     All zero-rated goods will become tax-exempt
                 </div>
                 <div class="myth-content">
-                    Partly true — Some items like animal feeds, locally assembled phones and pharmaceuticals will shift from zero-rated to exempt. However, essentials such as bread, milk, and flour will remain zero-rated.
+                    Partly true — Some items like animal feeds, locally assembled phones and pharmaceuticals will shift
+                    from zero-rated to exempt. However, essentials such as bread, milk, and flour will remain
+                    zero-rated.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status partly-true-status">Partly True</span>
                     Excise Duty will apply to all digital and imported services
                 </div>
                 <div class="myth-content">
-                    Partly true — The Bill targets specific imports like printed paper and polymer packaging, and imposes excise duty on digital services offered by non-residents through online platforms, as outlined in Sections 2 and 5.
+                    Partly true — The Bill targets specific imports like printed paper and polymer packaging, and
+                    imposes excise duty on digital services offered by non-residents through online platforms, as
+                    outlined in Sections 2 and 5.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Landowners will be taxed 10% on idle land
                 </div>
                 <div class="myth-content">
-                    This is false as the Bill does not propose a 10% tax on idle land. This claim has been widely circulated online but is not in the Bill. Always check official documents to avoid misinformation.
+                    This is false as the Bill does not propose a 10% tax on idle land. This claim has been widely
+                    circulated online but is not in the Bill. Always check official documents to avoid misinformation.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     5% Agriculture tax on tea, coffee and avocado sales
                 </div>
                 <div class="myth-content">
-                    This is false, as the Bill does not propose a 5% tax on the sale of tea, coffee, or avocados. The confusion likely arises from the Medium-Term Revenue Strategy (MTRS) 2023–2027, which had suggested a 5% withholding tax on agricultural produce sold through cooperatives and organized groups. However, this proposal was not adopted in the Finance Bill.
+                    This is false, as the Bill does not propose a 5% tax on the sale of tea, coffee, or avocados. The
+                    confusion likely arises from the Medium-Term Revenue Strategy (MTRS) 2023–2027, which had suggested
+                    a 5% withholding tax on agricultural produce sold through cooperatives and organized groups.
+                    However, this proposal was not adopted in the Finance Bill.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     PAYE will rise from 35% to 37.7%, and low earners taxed from 10% to 25%
                 </div>
                 <div class="myth-content">
-                    False as the Bill does not propose these changes. The current PAYE tax rates remain the same, with 10% for low-income earners and 35% for the highest band. The misinformation likely comes from a proposal made by the World Bank in its advisory reports suggesting higher tax rates, but this recommendation was not included in the Finance Bill 2025. The current update on PAYE in the Bill is that from 1 July 2025, employers must automatically apply tax reliefs for employees.
+                    False as the Bill does not propose these changes. The current PAYE tax rates remain the same, with
+                    10% for low-income earners and 35% for the highest band. The misinformation likely comes from a
+                    proposal made by the World Bank in its advisory reports suggesting higher tax rates, but this
+                    recommendation was not included in the Finance Bill 2025. The current update on PAYE in the Bill is
+                    that from 1 July 2025, employers must automatically apply tax reliefs for employees.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Mandatory KES 1,000 health insurance fee under SHIF
                 </div>
                 <div class="myth-content">
-                    The bill does not introduce a mandatory KES 1,000 fee under SHIF. The KES 1,000 figure likely arises from a misinterpretation of reimbursement provisions in the Ministry of Health's tariff guidelines, which allow a KES 1,000 daily reimbursement for beneficiaries who do not complete the three-stage program or meet the 45-day minimum stay.
+                    The bill does not introduce a mandatory KES 1,000 fee under SHIF. The KES 1,000 figure likely arises
+                    from a misinterpretation of reimbursement provisions in the Ministry of Health's tariff guidelines,
+                    which allow a KES 1,000 daily reimbursement for beneficiaries who do not complete the three-stage
+                    program or meet the 45-day minimum stay.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     New 15% tax on internet access
                 </div>
                 <div class="myth-content">
-                    There is no new 15% levy on internet access services. Existing digital taxes remain and the excise duty on digital services still applies mainly to online content, gaming, and advertising. However, the Tax Laws (Amendment) Act, 2024 replaced the Digital Service Tax(1.5%) with a 6% Significant Economic Presence Tax for non-residents offering services through digital marketplaces.
+                    There is no new 15% levy on internet access services. Existing digital taxes remain and the excise
+                    duty on digital services still applies mainly to online content, gaming, and advertising. However,
+                    the Tax Laws (Amendment) Act, 2024 replaced the Digital Service Tax(1.5%) with a 6% Significant
+                    Economic Presence Tax for non-residents offering services through digital marketplaces.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Mazingira Tax will be applied broadly
                 </div>
                 <div class="myth-content">
-                    This is not in the Finance Bill 2025. The KES 150 levy on packaging materials like plastics and glass comes from the Sustainable Waste Management (Extended Producer Responsibility) Regulations, 2024, enforced by NEMA under the Sustainable Waste Management Act. However, the High Court temporarily suspended these regulations on May 7, 2025, following a case filed by the Law Society of Kenya.
+                    This is not in the Finance Bill 2025. The KES 150 levy on packaging materials like plastics and
+                    glass comes from the Sustainable Waste Management (Extended Producer Responsibility) Regulations,
+                    2024, enforced by NEMA under the Sustainable Waste Management Act. However, the High Court
+                    temporarily suspended these regulations on May 7, 2025, following a case filed by the Law Society of
+                    Kenya.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Finance Bill threatens jobs and MSMEs
                 </div>
                 <div class="myth-content">
-                    This is false as the Bill offers tax incentives for start-ups and investors through NIFCA — 15% for 3 years, 20% for 4 years. It also supports MSMEs by streamlining taxes, boosting digital growth, and encouraging formalization. Paired with the MSME Policy 2025, it aims to expand funding, grow markets, and create more jobs.
+                    This is false as the Bill offers tax incentives for start-ups and investors through NIFCA — 15% for
+                    3 years, 20% for 4 years. It also supports MSMEs by streamlining taxes, boosting digital growth, and
+                    encouraging formalization. Paired with the MSME Policy 2025, it aims to expand funding, grow
+                    markets, and create more jobs.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Wifi Monitoring
                 </div>
                 <div class="myth-content">
-                    This is derived from the Kenya Information and Communications (Amendment) Bill 2025 which aims to shift from the current flat-rate or bundled data plans to a pay-per-use model. The Bill also proposes ISP Reporting including detailed usage data linked to meter numbers.
+                    This is derived from the Kenya Information and Communications (Amendment) Bill 2025 which aims to
+                    shift from the current flat-rate or bundled data plans to a pay-per-use model. The Bill also
+                    proposes ISP Reporting including detailed usage data linked to meter numbers.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Extension of the presidential limit from 5 to 7 years
                 </div>
                 <div class="myth-content">
-                    The proposal is in the Constitution of Kenya (Amendment) (No. 2) Bill No. 46 of 2024, introduced in the Senate. It has faced strong public and political opposition and is in the second reading stage. For now, the presidential limit remains at two five-year terms.
+                    The proposal is in the Constitution of Kenya (Amendment) (No. 2) Bill No. 46 of 2024, introduced in
+                    the Senate. It has faced strong public and political opposition and is in the second reading stage.
+                    For now, the presidential limit remains at two five-year terms.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Exchange of indigenous seeds and a fine of a million shillings
                 </div>
                 <div class="myth-content">
-                    This comes from the Seeds and Plant Varieties Act, which bans sharing uncertified seeds. However, the law is currently being challenged by Farmers in court, arguing it violates their rights.
+                    This comes from the Seeds and Plant Varieties Act, which bans sharing uncertified seeds. However,
+                    the law is currently being challenged by Farmers in court, arguing it violates their rights.
                 </div>
             </div>
-            
+
             <div class="myth-item">
                 <div class="myth-title">
                     <span class="truth-status false-status">False</span>
                     Neonatal Tax, Diaspora Remittance Tax, or 1% levy on pay bill transactions
                 </div>
                 <div class="myth-content">
-                    There is no basis for claims about a Neonatal Tax, Diaspora Remittance Tax, or a 1% levy on all pay bill and till number transactions. These assertions are false and not grounded in any official policy or legislation.
+                    There is no basis for claims about a Neonatal Tax, Diaspora Remittance Tax, or a 1% levy on all pay
+                    bill and till number transactions. These assertions are false and not grounded in any official
+                    policy or legislation.
                 </div>
             </div>
         </div>
@@ -1183,37 +1308,45 @@
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="answer">
-                    The Bill provides multiple benefits including tax-free gratuity for retirees, increased tax-free per diems, automated tax reliefs, and protection from penalties due to system errors. It also removes VAT on essential items like electric transport and tea/coffee packaging.
+                    The Bill provides multiple benefits including tax-free gratuity for retirees, increased tax-free per
+                    diems, automated tax reliefs, and protection from penalties due to system errors. It also removes
+                    VAT on essential items like electric transport and tea/coffee packaging.
                 </div>
             </div>
-            
+
             <div class="qa-item">
                 <div class="question">
                     What support does the Bill provide for businesses?
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="answer">
-                    The Bill simplifies tax compliance, waives penalties for system errors, protects against double taxation, and reduces taxes on digital assets. It also provides clarity on tax assessments and extends time for VAT refund processing to ensure accuracy.
+                    The Bill simplifies tax compliance, waives penalties for system errors, protects against double
+                    taxation, and reduces taxes on digital assets. It also provides clarity on tax assessments and
+                    extends time for VAT refund processing to ensure accuracy.
                 </div>
             </div>
-            
+
             <div class="qa-item">
                 <div class="question">
                     How does the Bill promote fairness in taxation?
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="answer">
-                    The Bill ensures foreign digital businesses pay taxes like local ones, taxes luxury aviation, removes special rates for large housing developers, and requires KRA to explain assessment changes. It also prevents double penalties for tax withholding issues.
+                    The Bill ensures foreign digital businesses pay taxes like local ones, taxes luxury aviation,
+                    removes special rates for large housing developers, and requires KRA to explain assessment changes.
+                    It also prevents double penalties for tax withholding issues.
                 </div>
             </div>
-            
+
             <div class="qa-item">
                 <div class="question">
                     What environmental benefits does the Bill include?
                     <i class="fas fa-chevron-down toggle-icon"></i>
                 </div>
                 <div class="answer">
-                    The Bill exempts electric bicycles, buses, and lithium-ion batteries from VAT to promote cleaner transport. It also shifts tourism support from tax breaks to structural reforms for sustainable growth.
+                    The Bill exempts electric bicycles, buses, and lithium-ion batteries from VAT to promote cleaner
+                    transport. It also shifts tourism support from tax breaks to structural reforms for sustainable
+                    growth.
                 </div>
             </div>
         </div>
@@ -1227,12 +1360,12 @@
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" name="category">
@@ -1242,12 +1375,14 @@
                         <option value="correction">Correction</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="message">Your Feedback</label>
-                    <textarea id="message" name="message" placeholder="Share your thoughts, questions, or suggestions about the Finance Bill 2025" required></textarea>
+                    <textarea id="message" name="message"
+                        placeholder="Share your thoughts, questions, or suggestions about the Finance Bill 2025"
+                        required></textarea>
                 </div>
-                
+
                 <button type="submit" class="submit-btn">Submit Feedback</button>
                 <div id="formStatus" style="margin-top: 15px; color: #4CAF50; display: none;"></div>
             </form>
@@ -1258,32 +1393,38 @@
             <h2 class="section-title" id="resources">Official Resources</h2>
             <ul class="resource-list">
                 <li>
-                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/09/Draft-MTRS-Final.pdf" target="_blank">
+                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/09/Draft-MTRS-Final.pdf"
+                        target="_blank">
                         <i class="fas fa-file-pdf"></i> Medium-Term Revenue Strategy (MTRS) Document
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/12/Medium-Term-Revenue-Strategy-2023.pdf" target="_blank">
+                    <a href="https://www.treasury.go.ke/wp-content/uploads/2023/12/Medium-Term-Revenue-Strategy-2023.pdf"
+                        target="_blank">
                         <i class="fas fa-file-pdf"></i> Medium-Term Revenue Strategy 2023-2027
                     </a>
                 </li>
                 <li>
-                    <a href="https://documents1.worldbank.org/curated/en/099052625064075957/pdf/P508617-0037cc2b-2412-4d93-af21-b1a559f4c775.pdf" target="_blank">
+                    <a href="https://documents1.worldbank.org/curated/en/099052625064075957/pdf/P508617-0037cc2b-2412-4d93-af21-b1a559f4c775.pdf"
+                        target="_blank">
                         <i class="fas fa-file-pdf"></i> World Bank Advisory Report on Taxation
                     </a>
                 </li>
                 <li>
-                    <a href="https://msme.go.ke/sites/default/files/2025-03/Draft%20MSME%20Policy%202025.pdf" target="_blank">
+                    <a href="https://msme.go.ke/sites/default/files/2025-03/Draft%20MSME%20Policy%202025.pdf"
+                        target="_blank">
                         <i class="fas fa-file-pdf"></i> Draft MSME Policy 2025
                     </a>
                 </li>
                 <li>
-                    <a href="http://www.parliament.go.ke/sites/default/files/2025-05/The%20Kenya%20Information%20and%20Communications%20%28amendment%29%20Bill%2C" target="_blank">
+                    <a href="http://www.parliament.go.ke/sites/default/files/2025-05/The%20Kenya%20Information%20and%20Communications%20%28amendment%29%20Bill%2C"
+                        target="_blank">
                         <i class="fas fa-file-pdf"></i> Kenya Information and Communications (Amendment) Bill 2025
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.greenpeace.org/africa/en/press/57608/kenyan-farmers-civil-society-and-advocates-take-seed-fight-to-court-in-landmark-case-for-food-sovereignty/" target="_blank">
+                    <a href="https://www.greenpeace.org/africa/en/press/57608/kenyan-farmers-civil-society-and-advocates-take-seed-fight-to-court-in-landmark-case-for-food-sovereignty/"
+                        target="_blank">
                         <i class="fas fa-file-alt"></i> Greenpeace Article on Seeds and Plant Varieties Act
                     </a>
                 </li>
@@ -1315,7 +1456,7 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         const menuIcon = document.getElementById('menuIcon');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             // Toggle between bars and times icon
@@ -1351,10 +1492,10 @@
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const icon = question.querySelector('.toggle-icon');
-                
+
                 answer.classList.toggle('show');
                 icon.classList.toggle('rotate');
-                
+
                 // Track the toggle
                 const questionText = question.textContent.replace('', '').trim();
                 trackQAToggle(questionText);
@@ -1362,14 +1503,15 @@
         });
 
         // Firebase configuration
+        // Replace these with your actual Firebase configuration values
         const firebaseConfig = {
-            apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-            authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-            databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-            projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-            storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-            messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-            appId: process.env.REACT_APP_FIREBASE_APP_ID
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
+            databaseURL: "YOUR_FIREBASE_DATABASE_URL",
+            projectId: "YOUR_FIREBASE_PROJECT_ID",
+            storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_FIREBASE_MESSAGING_SENDER_ID",
+            appId: "YOUR_FIREBASE_APP_ID"
         };
 
         // Initialize Firebase
@@ -1377,98 +1519,98 @@
         const db = firebase.firestore();
 
         // Feedback form submission
-        document.getElementById('financeBillFeedback').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formStatus = document.getElementById('formStatus');
-    const submitBtn = this.querySelector('.submit-btn');
-    
-    // Get form values
-    const name = document.getElementById('name').value.trim() || 'Anonymous';
-    const email = document.getElementById('email').value.trim() || 'Not provided';
-    const category = document.getElementById('category').value;
-    const message = document.getElementById('message').value.trim();
-    const site2 = document.getElementById('site2').value;
-    
-    // Validation
-    if (!message) {
-        formStatus.style.display = 'block';
-        formStatus.textContent = 'Please enter your feedback message.';
-        formStatus.style.color = '#cc0000';
-        return;
-    }
-    
-    if (email !== 'Not provided' && !email.includes('@')) {
-        formStatus.style.display = 'block';
-        formStatus.textContent = 'Please enter a valid email address.';
-        formStatus.style.color = '#cc0000';
-        return;
-    }
-    
-    // Track form submission
-    trackFormSubmission(category);
-    
-    // Get additional metadata
-    const timestamp = new Date();
-    const referer = document.referrer || 'Direct access';
-    const userAgent = navigator.userAgent;
-    
-    // Disable submit button during processing
-    submitBtn.disabled = true;
-    formStatus.style.display = 'block';
-    formStatus.textContent = 'Submitting your feedback...';
-    formStatus.style.color = '#4CAF50';
-    
-    // Add to Firestore (if Firebase is configured)
-    if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
-        db.collection("feedback").add({
-            name: name,
-            email: email,
-            message: message,
-            site2: site2,
-            category: category,
-            timestamp: timestamp,
-            referer: referer,
-            userAgent: userAgent
-        })
-        .then(() => {
-            formStatus.textContent = 'Thank you for your feedback!';
+        document.getElementById('financeBillFeedback').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formStatus = document.getElementById('formStatus');
+            const submitBtn = this.querySelector('.submit-btn');
+
+            // Get form values
+            const name = document.getElementById('name').value.trim() || 'Anonymous';
+            const email = document.getElementById('email').value.trim() || 'Not provided';
+            const category = document.getElementById('category').value;
+            const message = document.getElementById('message').value.trim();
+            const site2 = document.getElementById('site2').value;
+
+            // Validation
+            if (!message) {
+                formStatus.style.display = 'block';
+                formStatus.textContent = 'Please enter your feedback message.';
+                formStatus.style.color = '#cc0000';
+                return;
+            }
+
+            if (email !== 'Not provided' && !email.includes('@')) {
+                formStatus.style.display = 'block';
+                formStatus.textContent = 'Please enter a valid email address.';
+                formStatus.style.color = '#cc0000';
+                return;
+            }
+
+            // Track form submission
+            trackFormSubmission(category);
+
+            // Get additional metadata
+            const timestamp = new Date();
+            const referer = document.referrer || 'Direct access';
+            const userAgent = navigator.userAgent;
+
+            // Disable submit button during processing
+            submitBtn.disabled = true;
+            formStatus.style.display = 'block';
+            formStatus.textContent = 'Submitting your feedback...';
             formStatus.style.color = '#4CAF50';
-            this.reset();
-        })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-            formStatus.textContent = 'Error submitting feedback. Please try again.';
-            formStatus.style.color = '#cc0000';
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
+
+            // Add to Firestore (if Firebase is configured)
+            if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+                db.collection("feedback").add({
+                    name: name,
+                    email: email,
+                    message: message,
+                    site2: site2,
+                    category: category,
+                    timestamp: timestamp,
+                    referer: referer,
+                    userAgent: userAgent
+                })
+                    .then(() => {
+                        formStatus.textContent = 'Thank you for your feedback!';
+                        formStatus.style.color = '#4CAF50';
+                        this.reset();
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                        formStatus.textContent = 'Error submitting feedback. Please try again.';
+                        formStatus.style.color = '#cc0000';
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                        }, 5000);
+                    });
+            } else {
+                // Fallback if Firebase is not configured
+                setTimeout(() => {
+                    formStatus.textContent = 'Thank you for your feedback! (Note: Firebase not configured)';
+                    formStatus.style.color = '#4CAF50';
+                    this.reset();
+                    submitBtn.disabled = false;
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                    }, 3000);
+                }, 1000);
+            }
         });
-    } else {
-        // Fallback if Firebase is not configured
-        setTimeout(() => {
-            formStatus.textContent = 'Thank you for your feedback! (Note: Firebase not configured)';
-            formStatus.style.color = '#4CAF50';
-            this.reset();
-            submitBtn.disabled = false;
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 3000);
-        }, 1000);
-    }
-});
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
@@ -1479,57 +1621,58 @@
         });
 
         // Add scroll event listener
-window.addEventListener('scroll', trackScrollDepth);
+        window.addEventListener('scroll', trackScrollDepth);
 
-// Add click tracking for benefit cards
-document.addEventListener('DOMContentLoaded', function() {
-    // Track benefit card clicks
-    document.querySelectorAll('.benefit-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const title = this.querySelector('.benefit-title').textContent;
-            trackBenefitCardClick(title);
-        });
-    });
+        // Add click tracking for benefit cards
+        document.addEventListener('DOMContentLoaded', function () {
+            // Track benefit card clicks
+            document.querySelectorAll('.benefit-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const title = this.querySelector('.benefit-title').textContent;
+                    trackBenefitCardClick(title);
+                });
+            });
 
-    // Track navigation clicks
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            const navItem = this.textContent;
-            trackNavigationClick(navItem);
-        });
-    });
+            // Track navigation clicks
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function () {
+                    const navItem = this.textContent;
+                    trackNavigationClick(navItem);
+                });
+            });
 
-    // Track Q&A toggles
-    document.querySelectorAll('.question').forEach(question => {
-        question.addEventListener('click', function() {
-            const questionText = this.textContent.replace('', '').trim();
-            trackQAToggle(questionText);
-        });
-    });
+            // Track Q&A toggles
+            document.querySelectorAll('.question').forEach(question => {
+                question.addEventListener('click', function () {
+                    const questionText = this.textContent.replace('', '').trim();
+                    trackQAToggle(questionText);
+                });
+            });
 
-    // Track resource clicks
-    document.querySelectorAll('.resource-list a').forEach(link => {
-        link.addEventListener('click', function() {
-            const title = this.textContent.trim();
-            const url = this.href;
-            trackResourceClick(title, url);
-        });
-    });
+            // Track resource clicks
+            document.querySelectorAll('.resource-list a').forEach(link => {
+                link.addEventListener('click', function () {
+                    const title = this.textContent.trim();
+                    const url = this.href;
+                    trackResourceClick(title, url);
+                });
+            });
 
-    // Track myth views (when they become visible)
-    const mythItems = document.querySelectorAll('.myth-item');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const mythTitle = entry.target.querySelector('.myth-title').textContent;
-                trackMythView(mythTitle);
-                observer.unobserve(entry.target);
-            }
+            // Track myth views (when they become visible)
+            const mythItems = document.querySelectorAll('.myth-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const mythTitle = entry.target.querySelector('.myth-title').textContent;
+                        trackMythView(mythTitle);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            mythItems.forEach(item => observer.observe(item));
         });
-    });
-    
-    mythItems.forEach(item => observer.observe(item));
-});
     </script>
 </body>
+
 </html>
