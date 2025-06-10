@@ -1,6 +1,13 @@
 [build]
-  command = "node build.js"
-  publish = "dist"
+  command = "echo 'Building site...'"
+  publish = "."
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "16"
+
+[[plugins]]
+  package = "netlify-plugin-replace"
+  [plugins.inputs]
+    files = ["index.html"]
+    from = ["%%REACT_APP_FIREBASE_API_KEY%%", "%%REACT_APP_FIREBASE_AUTH_DOMAIN%%", "%%REACT_APP_FIREBASE_DATABASE_URL%%", "%%REACT_APP_FIREBASE_PROJECT_ID%%", "%%REACT_APP_FIREBASE_STORAGE_BUCKET%%", "%%REACT_APP_FIREBASE_MESSAGING_SENDER_ID%%", "%%REACT_APP_FIREBASE_APP_ID%%", "%%REACT_APP_POSTHOG_KEY%%", "%%REACT_APP_POSTHOG_HOST%%"]
+    to = ["${REACT_APP_FIREBASE_API_KEY}", "${REACT_APP_FIREBASE_AUTH_DOMAIN}", "${REACT_APP_FIREBASE_DATABASE_URL}", "${REACT_APP_FIREBASE_PROJECT_ID}", "${REACT_APP_FIREBASE_STORAGE_BUCKET}", "${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}", "${REACT_APP_FIREBASE_APP_ID}", "${REACT_APP_POSTHOG_KEY}", "${REACT_APP_POSTHOG_HOST}"]
